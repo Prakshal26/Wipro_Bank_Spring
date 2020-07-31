@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${bank.name}"></title>
+</head>
+<body>
+<h3 th:text="${bank.name}"></h3>
+<h3 th:text="${bank.address}"></h3>
+<table>
+    <tr>
+        <th>Branch Name</th>
+        <th>IFSC CODE</th>
+    </tr>
+    <tr th:each="branch : ${bank.getBranch()}">
+        <td th:text="${branch.branchName} "></td>
+        <td th:text="${branch.ifsc} "></td>
+    </tr>
+</table>
+</body>
+</html>

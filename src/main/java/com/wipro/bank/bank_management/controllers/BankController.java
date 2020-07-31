@@ -3,14 +3,16 @@ package com.wipro.bank.bank_management.controllers;
 import com.wipro.bank.bank_management.model.Bank;
 import com.wipro.bank.bank_management.services.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-@RestController
+@Controller
 public class BankController {
 
     private final BankService bankService;
@@ -21,6 +23,7 @@ public class BankController {
     }
 
     @GetMapping("/name")
+    @ResponseBody
     List<String> name(){
 
        Set<Bank>bankSet = bankService.findAll();
@@ -31,6 +34,7 @@ public class BankController {
     }
 
     @GetMapping("/address")
+    @ResponseBody
     List<String> address(){
 
         Set<Bank>bankSet = bankService.findAll();
@@ -40,5 +44,16 @@ public class BankController {
         return address;
     }
 
+    @GetMapping("/branches")
+    public String bankNames(Model model) {
+        model.addAttribute("bank",bankService.findById(1L));
+        return "/bank/bank_list";
+    }
+
+    @GetMapping("/services")
+    public String bankServices(Model model) {
+        model.addAttribute("bank",bankService.findById(1L));
+        return "/bank/bank_services";
+    }
 
 }

@@ -1,9 +1,8 @@
 package com.wipro.bank.bank_management.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Bank {
@@ -11,10 +10,16 @@ public class Bank {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    String name;
-    String address;
+    private String name;
+    private String address;
+
+    @OneToMany(mappedBy = "bank")
+    Set<Branch> branch = new HashSet<>();
+
+    @OneToMany(mappedBy = "banks")
+    Set<BankFacilities> bankFacilities = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -38,5 +43,21 @@ public class Bank {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Set<Branch> getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Set<Branch> branch) {
+        this.branch = branch;
+    }
+
+    public Set<BankFacilities> getBankFacilities() {
+        return bankFacilities;
+    }
+
+    public void setBankFacilities(Set<BankFacilities> bankFacilities) {
+        this.bankFacilities = bankFacilities;
     }
 }
