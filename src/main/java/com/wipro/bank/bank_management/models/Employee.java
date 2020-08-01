@@ -1,35 +1,21 @@
 package com.wipro.bank.bank_management.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-@Entity
+@Embeddable
 public class Employee {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotNull(message = "Employee Id cannot be null")
+  //  @NotNull(message = "Employee Id cannot be null")
     private Long empId;
-    @NotBlank(message = "Name is mandatory")
+    //@NotBlank(message = "Name is mandatory")
     private String name;
-    @Pattern(regexp = "^(.+)@(.+)$", message = "Not a Valid Email")
+    //@Pattern(regexp = "^(.+)@(.+)$", message = "Not a Valid Email")
     private String email;
     private String location;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getEmpId() {
         return empId;
@@ -66,11 +52,12 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                "id=" + id +
                 ", empId=" + empId +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", location='" + location + '\'' +
                 '}';
     }
+
+
 }
