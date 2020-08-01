@@ -1,3 +1,7 @@
+//This Project contains 5 Branches for each assignment respectively.
+//        Master branch has Spring Initialized code and later from branch Assignment1 there are respective code
+//        for respective assignment.
+
 package com.wipro.bank.bank_management;
 
 import org.springframework.boot.SpringApplication;
